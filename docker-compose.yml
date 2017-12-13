@@ -23,6 +23,8 @@ services:
       - ./app:/app
     links: 
       - "db:mongo"
+    ports:
+      - "5858:5858"
     environment:
      - PORT=3001
   db:

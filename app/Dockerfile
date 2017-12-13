@@ -13,6 +13,8 @@ RUN npm install
 # If you are building your code for production
 # RUN npm install --only=production
 
+EXPOSE 5858
+
 # Bundle app source
 COPY . /usr/src/app
-CMD [ "node", "bin/www" ]
+CMD [ "node", "--debug=5858", "bin/www" ]

@@ -15,8 +15,8 @@
   },
   "proxy": {
     "/": {
-            "target": "http://api:3001/",
-            "changeOrigin": true
-        }
+      "target": "http://api:3001/",
+      "changeOrigin": true
+    }
   }
 }
