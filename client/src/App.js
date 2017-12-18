@@ -9,16 +9,23 @@ class App extends Component {
     this.state = {
       url: '',
       urls: [],
-      userID: 12345
+      userID: window.localStorage.userID ? window.localStorage.userID : this.setUserID()
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.loadUrlList = this.loadUrlList.bind(this);
+    this.setUserID = this.setUserID.bind(this);
+  }
+
+  setUserID() {
+    const userID = Math.round(Math.random() * Date.now());
+    window.localStorage.userID = userID;
+    return userID;
   }
 
   loadUrlList() {
-    fetch('/api/urls/12345')
+    fetch('/api/urls/' + this.state.userID)
     .then(res => res.json())
     .then(urls => this.setState({ urls }));
   }

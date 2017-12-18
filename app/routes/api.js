@@ -19,14 +19,14 @@ router.post('/create', function(req, res, next) {
     if (!urlHelper.isValidURL(req.headers.url)) {
         res.status(500).send({message: "Invalid URL"});
     }
-
+    
     const originalUrl = urlHelper.appendHttp(req.headers.url),
           redirectUrl = urlHelper.generateShortenedURL();
 
     URL.create({
         originalUrl,
         redirectUrl,
-        user: 12345,
+        user: req.headers.userid,
         dateAdded: new Date().toISOString(),
         hitCounter: 0
     }).then(() => {
