@@ -19,7 +19,11 @@ class UrlListItem extends Component {
                 <td className="align-middle">{this.props.urlData.originalUrl}</td>
                 <td className="align-middle"><a href={this.props.urlData.redirectUrl}>{this.props.urlData.redirectUrl}</a></td>
                 <td className="align-middle">{this.props.urlData.hitCounter}</td>
-                <td className="align-middle"><Button color="danger" className="pull-right" onClick={() => this.removeListItem(this.props.urlData._id)}><FontAwesome name="remove" /> Delete</Button></td>
+                <td className="align-middle">
+                    <Button color="danger" className="pull-right" onClick={() => this.removeListItem(this.props.urlData._id)}>
+                        <FontAwesome name="remove" /> Delete
+                    </Button>
+                </td>
             </tr>
         );
     }
