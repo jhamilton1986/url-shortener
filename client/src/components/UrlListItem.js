@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 class UrlListItem extends Component {  
     removeListItem(id) {
-        fetch("/api/" + id,
-        {
+        fetch("/api/" + id, {
             method: "DELETE"
         })
         .then(() => {

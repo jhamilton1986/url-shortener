@@ -17,4 +17,4 @@ EXPOSE 5858
 
 # Bundle app source
 COPY . /usr/src/app
-CMD [ "node", "--debug=5858", "bin/www" ]
+CMD [ "node", "--inspect=5858", "bin/www" ]

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import UrlList from './components/UrlList';
-
-import "shoelace-css/source/css/shoelace.css";
+import UrlList from '../components/UrlList';
 
 class App extends Component {
   constructor(props) {
@@ -40,8 +38,7 @@ class App extends Component {
   }
   
   handleSubmit(event) {
-    fetch("/api/create/",
-    {
+    fetch("/api/create/", {
       method: "POST",
       headers: this.state
     })
@@ -56,14 +53,14 @@ class App extends Component {
   render() {
     return (
       <div className="App container">
-        <h1>URL Shortener</h1>
-
-        <form onSubmit={this.handleSubmit}>
-            <input type="text" onChange={this.handleChange} value={this.state.url} />
-            <button className="button-success button-block" type="submit">Shorten It!</button>
-        </form>
-
-        <UrlList urls={this.state.urls} deleteHandler={this.loadUrlList} />
+      <h1>URL Shortener</h1>
+      
+      <form onSubmit={this.handleSubmit}>
+        <input type="text" onChange={this.handleChange} value={this.state.url} />
+        <button className="button-success button-block" type="submit">Shorten It!</button>
+      </form>
+      
+      <UrlList urls={this.state.urls} deleteHandler={this.loadUrlList} />
       </div>
     );
   }
