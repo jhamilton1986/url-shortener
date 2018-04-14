@@ -1,27 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import UrlListItem from './UrlListItem';
+import { Table } from 'reactstrap';
 
-class UrlList extends Component {
-  render() {
+function UrlList(props) {
     return (
-      <div className="row">
-        {this.props.urls.map(url =>
-            <UrlListItem key={url._id} urlData={url} onDelete={() => {this.props.deleteHandler()}} />
-        )}
-      </div>
+        <Table className="URLList">
+            <thead>
+                <tr>
+                    <th>Original URL</th>
+                    <th>Shortened URL</th>
+                    <th>Hit Counter</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {props.urls.map(url =>
+                    <UrlListItem key={url._id} urlData={url} onDelete={() => {props.deleteHandler()}} />
+                )}
+            </tbody>
+        </Table>
     );
-  }
 }
 
 UrlList.propTypes = {
-  urls: PropTypes.arrayOf(PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      originalUrl: PropTypes.string.isRequired,
-      redirectUrl: PropTypes.string.isRequired,
-      hitCounter: PropTypes.number.isRequired,
+    urls: PropTypes.arrayOf(PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        originalUrl: PropTypes.string.isRequired,
+        redirectUrl: PropTypes.string.isRequired,
+        hitCounter: PropTypes.number.isRequired,
     })).isRequired,
-  deleteHandler: PropTypes.func.isRequired
+    deleteHandler: PropTypes.func.isRequired
 };
-  
+
 export default UrlList;

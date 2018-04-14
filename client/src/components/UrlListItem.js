@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'reactstrap';
 
 class UrlListItem extends Component {  
     removeListItem(id) {
@@ -13,12 +14,12 @@ class UrlListItem extends Component {
     
     render() {
         return (
-            <div className="URLListItem col-12" key={this.props.urlData._id}>
-                <p>{this.props.urlData.originalUrl}</p>
-                <a href={this.props.urlData.redirectUrl}>{this.props.urlData.redirectUrl}</a>
-                <p>Hit Counter: {this.props.urlData.hitCounter}</p>
-                <button onClick={() => this.removeListItem(this.props.urlData._id)}><i className="fa fa-remove"></i> Delete</button>
-            </div>
+            <tr className="URLListItem" key={this.props.urlData._id}>
+                <td>{this.props.urlData.originalUrl}</td>
+                <td><a href={this.props.urlData.redirectUrl}>{this.props.urlData.redirectUrl}</a></td>
+                <td>{this.props.urlData.hitCounter}</td>
+                <td><Button color="danger" className="pull-right" onClick={() => this.removeListItem(this.props.urlData._id)}><i className="fa fa-remove"></i> Delete</Button></td>
+            </tr>
         );
     }
 }

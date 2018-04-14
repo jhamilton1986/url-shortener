@@ -5,6 +5,7 @@ const URL = mongoose.model('URL');
 
 const urlHelper = require('../controllers/url-helper');
 
+/* GET the list of URLs for the user */
 router.get('/urls/:userID', function(req, res, next) {
     URL.find({
         user: req.params.userID
