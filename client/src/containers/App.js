@@ -40,6 +40,9 @@ class App extends Component {
     }
     
     handleSubmit(event) {
+        event.preventDefault();        
+        if (this.state.url.length === 0) return null;
+
         fetch("/api/create/", {
             method: "POST",
             headers: this.state
@@ -49,7 +52,6 @@ class App extends Component {
             this.setState({url: ''});
         });
         
-        event.preventDefault();
     }
     
     render() {
@@ -62,7 +64,7 @@ class App extends Component {
                         <InputGroup>
                             <Input bsSize="lg" type="text" onChange={this.handleChange} value={this.state.url} />
                             <InputGroupAddon addonType="append">
-                                <Button color="primary" type="submit">Shorten It!</Button>
+                                <Button color="primary" type="submit" disabled={!this.state.url}>Shorten It!</Button>
                             </InputGroupAddon>
                         </InputGroup>
                     </Form>
