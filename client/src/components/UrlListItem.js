@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
+import FontAwesome from 'react-fontawesome';
 
 class UrlListItem extends Component {  
     removeListItem(id) {
@@ -15,10 +16,10 @@ class UrlListItem extends Component {
     render() {
         return (
             <tr className="URLListItem" key={this.props.urlData._id}>
-                <td>{this.props.urlData.originalUrl}</td>
-                <td><a href={this.props.urlData.redirectUrl}>{this.props.urlData.redirectUrl}</a></td>
-                <td>{this.props.urlData.hitCounter}</td>
-                <td><Button color="danger" className="pull-right" onClick={() => this.removeListItem(this.props.urlData._id)}><i className="fa fa-remove"></i> Delete</Button></td>
+                <td className="align-middle">{this.props.urlData.originalUrl}</td>
+                <td className="align-middle"><a href={this.props.urlData.redirectUrl}>{this.props.urlData.redirectUrl}</a></td>
+                <td className="align-middle">{this.props.urlData.hitCounter}</td>
+                <td className="align-middle"><Button color="danger" className="pull-right" onClick={() => this.removeListItem(this.props.urlData._id)}><FontAwesome name="remove" /> Delete</Button></td>
             </tr>
         );
     }
