@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import UrlList from '../components/UrlList';
 import { Jumbotron, Button, Form, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 
-
 class App extends Component {
     constructor(props) {
         super(props);
