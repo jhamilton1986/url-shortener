@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
 
+import './UrlListItem.css';
+
+
 class UrlListItem extends Component {  
     removeListItem(id) {
         fetch("/api/" + id, {

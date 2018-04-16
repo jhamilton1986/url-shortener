@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import UrlListItem from './UrlListItem';
 import { Table } from 'reactstrap';
 
+import './UrlList.css';
+
 function UrlList(props) {
     return (
         <Table className="URLList">
