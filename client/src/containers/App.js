@@ -17,6 +17,10 @@ class App extends Component {
         this.loadUrlList = this.loadUrlList.bind(this);
         this.setUserID = this.setUserID.bind(this);
     }
+
+    componentDidMount() {
+        this.loadUrlList();
+    }
     
     setUserID() {
         const userID = Math.round(Math.random() * Date.now());
@@ -28,10 +32,6 @@ class App extends Component {
         fetch('/api/urls/' + this.state.userID)
         .then(res => res.json())
         .then(urls => this.setState({ urls }));
-    }
-    
-    componentDidMount() {
-        this.loadUrlList();
     }
     
     handleChange(event) {
