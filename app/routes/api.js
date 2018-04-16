@@ -18,23 +18,23 @@ router.get('/urls/:userID', function(req, res, next) {
 /* POST request to make new shortened url  */
 router.post('/create', function(req, res, next) {
     if (!urlHelper.isValidURL(req.headers.url)) {
-        res.status(500).send({message: "Invalid URL"});
-    }
-    
-    const originalUrl = urlHelper.appendHttp(req.headers.url),
-          redirectUrl = urlHelper.generateShortenedURL();
+        res.send({message: "Invalid URL"});
+    } else {
+        const originalUrl = urlHelper.appendHttp(req.headers.url),
+        redirectUrl = urlHelper.generateShortenedURL();
 
-    URL.create({
-        originalUrl,
-        redirectUrl,
-        user: req.headers.userid,
-        dateAdded: new Date().toISOString(),
-        hitCounter: 0
-    }).then(() => {
-        res.send({message: "URL generated"});
-    }).catch((err) => {
-        res.send(err);
-    })
+        URL.create({
+            originalUrl,
+            redirectUrl,
+            user: req.headers.userid,
+            dateAdded: new Date().toISOString(),
+            hitCounter: 0
+        }).then(() => {
+            res.send({message: "URL generated"});
+        }).catch((err) => {
+            res.send(err);
+        })
+    }
 });
 
 /* DELETE shortened url  */

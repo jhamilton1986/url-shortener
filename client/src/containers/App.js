@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UrlList from '../components/UrlList';
-import { Jumbotron, Button, Form, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Jumbotron, Button, Form, Input, InputGroup, InputGroupAddon, FormFeedback } from 'reactstrap';
 
 class App extends Component {
     constructor(props) {
@@ -8,6 +8,7 @@ class App extends Component {
         
         this.state = {
             url: '',
+            isValidURL: true,
             urls: [],
             userID: window.localStorage.userID ? window.localStorage.userID : this.setUserID()
         };
@@ -46,14 +47,22 @@ class App extends Component {
             method: "POST",
             headers: this.state
         })
-        .then(() => {
-            this.loadUrlList();
-            this.setState({url: ''});
+        .then(response => response.json())
+        .then(response => {
+            if (response.message === "Invalid URL") {
+                this.setState({isValidURL: false, url: ''});
+            } else {
+                this.loadUrlList();
+                this.setState({isValidURL: true, url: ''});
+            }
         });
-        
     }
     
     render() {
+        const inputProps = {
+            invalid: !this.state.isValidURL
+        };
+
         return (
             <div className="App container">
                 <Jumbotron className="mt-4">
@@ -61,11 +70,15 @@ class App extends Component {
                     
                     <Form onSubmit={this.handleSubmit}>
                         <InputGroup>
-                            <Input bsSize="lg" type="text" onChange={this.handleChange} value={this.state.url} />
+                            <Input { ...inputProps } bsSize="lg" type="text" onChange={this.handleChange} value={this.state.url} />
                             <InputGroupAddon addonType="append">
                                 <Button color="primary" type="submit" disabled={!this.state.url}>Shorten It!</Button>
                             </InputGroupAddon>
-                        </InputGroup>
+
+                            { !this.state.isValidURL && 
+                                <FormFeedback>Oh no! That URL wasn't valid!</FormFeedback> 
+                            }
+                        </InputGroup>                        
                     </Form>
                 </Jumbotron>
                 
