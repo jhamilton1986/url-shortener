@@ -16,10 +16,8 @@ This project is a basic URL shortener, made as a way to learn and get more exper
 
 1. Run `make build`
 2. Run `make run`
-3. Once the Docker containers are ready, go to `http://localhost:3000`
+3. Once the Docker containers are ready, the interface should be available at `http://localhost:3000`
 4. To stop the Docker containers, run `make stop`
-
-Once the Docker containers have started, the interface should then be accessible at `http://localhost:3000`
 
 ## Todo
 
